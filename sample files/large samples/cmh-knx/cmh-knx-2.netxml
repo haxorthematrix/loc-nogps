@@ -1,0 +1,653 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE detection-run SYSTEM "http://kismetwireless.net/kismet-3.1.0.dtd">
+
+<detection-run kismet-version="2011.03.R2" start-time="Sat Jun 30 22:31:22 2012">
+
+<card-source uuid="e4f30854-c324-11e1-a07d-0c04101be201">
+ <card-source>wlan0:</card-source>
+ <card-name>wlan0</card-name>
+ <card-interface>wlan0mon</card-interface>
+ <card-type>rtl8187</card-type>
+ <card-packets>171</card-packets>
+ <card-hop>true</card-hop>
+ <card-channels>1,5,9,13,2,6,10,14,3,7,11,4,8,12</card-channels>
+</card-source>
+  <wireless-network number="1" type="infrastructure" first-time="Sat Jun 30 22:31:45 2012" last-time="Sat Jun 30 22:33:46 2012">
+    <SSID first-time="Sat Jun 30 22:31:45 2012" last-time="Sat Jun 30 22:33:46 2012">
+        <type>Beacon</type>
+        <max-rate>54.000000</max-rate>
+        <packets>66</packets>
+        <beaconrate>10</beaconrate>
+        <encryption>WPA+PSK</encryption>
+        <encryption>WPA+AES-CCM</encryption>
+        <dot11d country="US ">
+          <dot11d-range start="1" end="1" max-power="13"/>
+          <dot11d-range start="2" end="2" max-power="13"/>
+          <dot11d-range start="3" end="3" max-power="13"/>
+          <dot11d-range start="4" end="4" max-power="13"/>
+          <dot11d-range start="5" end="5" max-power="13"/>
+          <dot11d-range start="6" end="6" max-power="13"/>
+          <dot11d-range start="7" end="7" max-power="13"/>
+          <dot11d-range start="8" end="8" max-power="13"/>
+          <dot11d-range start="9" end="9" max-power="13"/>
+          <dot11d-range start="10" end="10" max-power="13"/>
+          <dot11d-range start="11" end="11" max-power="13"/>
+        </dot11d>
+        <essid cloaked="false">Verizon MIFI4510L 480B Secure</essid>
+    </SSID>
+    <BSSID>00:15:FF:11:48:0B</BSSID>
+    <manuf>NovatelW</manuf>
+    <channel>6</channel>
+    <freqmhz>2427 1</freqmhz>
+    <freqmhz>2432 2</freqmhz>
+    <freqmhz>2437 58</freqmhz>
+    <freqmhz>2442 2</freqmhz>
+    <freqmhz>2447 1</freqmhz>
+    <freqmhz>2457 2</freqmhz>
+    <maxseenrate>1000</maxseenrate>
+     <packets>
+       <LLC>66</LLC>
+       <data>0</data>
+       <crypt>0</crypt>
+       <total>66</total>
+       <fragments>0</fragments>
+       <retries>0</retries>
+     </packets>
+     <datasize>0</datasize>
+    <snr-info>
+      <last_signal_dbm>-69</last_signal_dbm>
+      <last_noise_dbm>0</last_noise_dbm>
+      <last_signal_rssi>0</last_signal_rssi>
+      <last_noise_rssi>0</last_noise_rssi>
+      <min_signal_dbm>-74</min_signal_dbm>
+      <min_noise_dbm>0</min_noise_dbm>
+      <min_signal_rssi>1024</min_signal_rssi>
+      <min_noise_rssi>1024</min_noise_rssi>
+      <max_signal_dbm>-68</max_signal_dbm>
+      <max_noise_dbm>-256</max_noise_dbm>
+      <max_signal_rssi>0</max_signal_rssi>
+      <max_noise_rssi>0</max_noise_rssi>
+    </snr-info>
+    <gps-info>
+      <min-lat>40.880230</min-lat>
+      <min-lon>-90.089172</min-lon>
+      <min-alt>196.000000</min-alt>
+      <min-spd>0.000000</min-spd>
+      <max-lat>40.880241</max-lat>
+      <max-lon>-90.089165</max-lon>
+      <max-alt>198.000000</max-alt>
+      <max-spd>0.000000</max-spd>
+      <peak-lat>0.000000</peak-lat>
+      <peak-lon>0.000000</peak-lon>
+      <peak-alt>0.000000</peak-alt>
+      <avg-lat>40.880236</avg-lat>
+      <avg-lon>-90.089171</avg-lon>
+      <avg-alt>196.578900</avg-alt>
+    </gps-info>
+    <bsstimestamp>1231257992</bsstimestamp>
+    <cdp-device></cdp-device>
+    <cdp-portid></cdp-portid>
+    <seen-card>
+     <seen-uuid>e4f30854-c324-11e1-a07d-0c04101be201</seen-uuid>
+     <seen-time>Sat Jun 30 22:33:46 2012</seen-time>
+     <seen-packets>66</seen-packets>
+    </seen-card>
+    <wireless-client number="1" type="fromds" first-time="Sat Jun 30 22:33:46 2012" last-time="Sat Jun 30 22:33:46 2012">
+      <client-mac>00:15:FF:11:48:0B</client-mac>
+      <client-manuf>NovatelW</client-manuf>
+      <channel>6</channel>
+      <freqmhz>2427 1</freqmhz>
+      <freqmhz>2432 2</freqmhz>
+      <freqmhz>2437 58</freqmhz>
+      <freqmhz>2442 2</freqmhz>
+      <freqmhz>2447 1</freqmhz>
+      <freqmhz>2457 2</freqmhz>
+      <maxseenrate>1000</maxseenrate>
+       <packets>
+         <LLC>66</LLC>
+         <data>0</data>
+         <crypt>0</crypt>
+         <total>66</total>
+         <fragments>0</fragments>
+         <retries>0</retries>
+       </packets>
+       <datasize>0</datasize>
+      <snr-info>
+        <last_signal_dbm>-69</last_signal_dbm>
+        <last_noise_dbm>0</last_noise_dbm>
+        <last_signal_rssi>0</last_signal_rssi>
+        <last_noise_rssi>0</last_noise_rssi>
+        <min_signal_dbm>-74</min_signal_dbm>
+        <min_noise_dbm>0</min_noise_dbm>
+        <min_signal_rssi>1024</min_signal_rssi>
+        <min_noise_rssi>1024</min_noise_rssi>
+        <max_signal_dbm>-68</max_signal_dbm>
+        <max_noise_dbm>-256</max_noise_dbm>
+        <max_signal_rssi>0</max_signal_rssi>
+        <max_noise_rssi>0</max_noise_rssi>
+      </snr-info>
+      <gps-info>
+        <min-lat>40.880230</min-lat>
+        <min-lon>-90.089172</min-lon>
+        <min-alt>196.000000</min-alt>
+        <min-spd>0.000000</min-spd>
+        <max-lat>40.880241</max-lat>
+        <max-lon>-90.089165</max-lon>
+        <max-alt>198.000000</max-alt>
+        <max-spd>0.000000</max-spd>
+        <peak-lat>0.000000</peak-lat>
+        <peak-lon>0.000000</peak-lon>
+        <peak-alt>0.000000</peak-alt>
+        <avg-lat>40.880236</avg-lat>
+        <avg-lon>-90.089171</avg-lon>
+        <avg-alt>196.578900</avg-alt>
+      </gps-info>
+      <seen-card>
+       <seen-uuid>e4f30854-c324-11e1-a07d-0c04101be201</seen-uuid>
+       <seen-time>Sat Jun 30 22:33:46 2012</seen-time>
+       <seen-packets>66</seen-packets>
+      </seen-card>
+    </wireless-client>
+  </wireless-network>
+  <wireless-network number="2" type="probe" first-time="Sat Jun 30 22:32:03 2012" last-time="Sat Jun 30 22:32:36 2012">
+    <BSSID>00:16:A4:01:1A:34</BSSID>
+    <manuf>Ezurio</manuf>
+    <channel>0</channel>
+    <freqmhz>2412 3</freqmhz>
+    <freqmhz>2432 3</freqmhz>
+    <freqmhz>2442 3</freqmhz>
+    <freqmhz>2447 4</freqmhz>
+    <freqmhz>2457 1</freqmhz>
+    <freqmhz>2462 3</freqmhz>
+    <freqmhz>2484 1</freqmhz>
+    <maxseenrate>2000</maxseenrate>
+     <packets>
+       <LLC>18</LLC>
+       <data>0</data>
+       <crypt>0</crypt>
+       <total>18</total>
+       <fragments>0</fragments>
+       <retries>0</retries>
+     </packets>
+     <datasize>0</datasize>
+    <snr-info>
+      <last_signal_dbm>-66</last_signal_dbm>
+      <last_noise_dbm>0</last_noise_dbm>
+      <last_signal_rssi>0</last_signal_rssi>
+      <last_noise_rssi>0</last_noise_rssi>
+      <min_signal_dbm>-74</min_signal_dbm>
+      <min_noise_dbm>0</min_noise_dbm>
+      <min_signal_rssi>1024</min_signal_rssi>
+      <min_noise_rssi>1024</min_noise_rssi>
+      <max_signal_dbm>-65</max_signal_dbm>
+      <max_noise_dbm>-256</max_noise_dbm>
+      <max_signal_rssi>0</max_signal_rssi>
+      <max_noise_rssi>0</max_noise_rssi>
+    </snr-info>
+    <bsstimestamp>0</bsstimestamp>
+    <cdp-device></cdp-device>
+    <cdp-portid></cdp-portid>
+    <seen-card>
+     <seen-uuid>e4f30854-c324-11e1-a07d-0c04101be201</seen-uuid>
+     <seen-time>Sat Jun 30 22:32:36 2012</seen-time>
+     <seen-packets>18</seen-packets>
+    </seen-card>
+    <wireless-client number="1" type="tods" first-time="Sat Jun 30 22:32:36 2012" last-time="Sat Jun 30 22:32:36 2012">
+      <client-mac>00:16:A4:01:1A:34</client-mac>
+      <client-manuf>Ezurio</client-manuf>
+        <SSID first-time="Sat Jun 30 22:32:36 2012" last-time="Sat Jun 30 22:32:36 2012">
+            <type>Probe Request</type>
+            <max-rate>54.000000</max-rate>
+            <packets>1</packets>
+            <encryption>None</encryption>
+        </SSID>
+        <SSID first-time="Sat Jun 30 22:32:33 2012" last-time="Sat Jun 30 22:32:33 2012">
+            <type>Probe Request</type>
+            <max-rate>54.000000</max-rate>
+            <packets>1</packets>
+            <encryption>None</encryption>
+            <ssid>Schneider</ssid>
+        </SSID>
+        <SSID first-time="Sat Jun 30 22:32:19 2012" last-time="Sat Jun 30 22:32:19 2012">
+            <type>Probe Request</type>
+            <max-rate>54.000000</max-rate>
+            <packets>1</packets>
+            <encryption>None</encryption>
+            <ssid>Camp Akita (WC)</ssid>
+        </SSID>
+        <SSID first-time="Sat Jun 30 22:32:35 2012" last-time="Sat Jun 30 22:32:35 2012">
+            <type>Probe Request</type>
+            <max-rate>54.000000</max-rate>
+            <packets>1</packets>
+            <encryption>None</encryption>
+            <ssid>\017\032\012\014\025\015\011\016\020\030\005\027\014\016\003\027\025\006\021\017\032\035\025\005\001\011\006\037\001\025\036\032</ssid>
+        </SSID>
+      <channel>0</channel>
+      <freqmhz>2412 3</freqmhz>
+      <freqmhz>2432 3</freqmhz>
+      <freqmhz>2442 3</freqmhz>
+      <freqmhz>2447 4</freqmhz>
+      <freqmhz>2457 1</freqmhz>
+      <freqmhz>2462 3</freqmhz>
+      <freqmhz>2484 1</freqmhz>
+      <maxseenrate>2000</maxseenrate>
+       <packets>
+         <LLC>18</LLC>
+         <data>0</data>
+         <crypt>0</crypt>
+         <total>18</total>
+         <fragments>0</fragments>
+         <retries>0</retries>
+       </packets>
+       <datasize>0</datasize>
+      <snr-info>
+        <last_signal_dbm>-66</last_signal_dbm>
+        <last_noise_dbm>0</last_noise_dbm>
+        <last_signal_rssi>0</last_signal_rssi>
+        <last_noise_rssi>0</last_noise_rssi>
+        <min_signal_dbm>-74</min_signal_dbm>
+        <min_noise_dbm>0</min_noise_dbm>
+        <min_signal_rssi>1024</min_signal_rssi>
+        <min_noise_rssi>1024</min_noise_rssi>
+        <max_signal_dbm>-65</max_signal_dbm>
+        <max_noise_dbm>-256</max_noise_dbm>
+        <max_signal_rssi>0</max_signal_rssi>
+        <max_noise_rssi>0</max_noise_rssi>
+      </snr-info>
+      <seen-card>
+       <seen-uuid>e4f30854-c324-11e1-a07d-0c04101be201</seen-uuid>
+       <seen-time>Sat Jun 30 22:32:36 2012</seen-time>
+       <seen-packets>18</seen-packets>
+      </seen-card>
+    </wireless-client>
+  </wireless-network>
+  <wireless-network number="3" type="probe" first-time="Sat Jun 30 22:32:18 2012" last-time="Sat Jun 30 22:33:18 2012">
+    <BSSID>00:24:2C:51:17:3A</BSSID>
+    <manuf>HonHaiPr</manuf>
+    <channel>0</channel>
+    <freqmhz>2417 4</freqmhz>
+    <freqmhz>2437 1</freqmhz>
+    <freqmhz>2462 2</freqmhz>
+    <maxseenrate>1000</maxseenrate>
+     <packets>
+       <LLC>7</LLC>
+       <data>0</data>
+       <crypt>0</crypt>
+       <total>7</total>
+       <fragments>0</fragments>
+       <retries>0</retries>
+     </packets>
+     <datasize>0</datasize>
+    <snr-info>
+      <last_signal_dbm>-63</last_signal_dbm>
+      <last_noise_dbm>0</last_noise_dbm>
+      <last_signal_rssi>0</last_signal_rssi>
+      <last_noise_rssi>0</last_noise_rssi>
+      <min_signal_dbm>-63</min_signal_dbm>
+      <min_noise_dbm>0</min_noise_dbm>
+      <min_signal_rssi>1024</min_signal_rssi>
+      <min_noise_rssi>1024</min_noise_rssi>
+      <max_signal_dbm>-61</max_signal_dbm>
+      <max_noise_dbm>-256</max_noise_dbm>
+      <max_signal_rssi>0</max_signal_rssi>
+      <max_noise_rssi>0</max_noise_rssi>
+    </snr-info>
+    <gps-info>
+      <min-lat>40.880234</min-lat>
+      <min-lon>-90.089172</min-lon>
+      <min-alt>197.000000</min-alt>
+      <min-spd>0.000000</min-spd>
+      <max-lat>40.880234</max-lat>
+      <max-lon>-90.089172</max-lon>
+      <max-alt>197.000000</max-alt>
+      <max-spd>0.000000</max-spd>
+      <peak-lat>0.000000</peak-lat>
+      <peak-lon>0.000000</peak-lon>
+      <peak-alt>0.000000</peak-alt>
+      <avg-lat>40.880234</avg-lat>
+      <avg-lon>-90.089172</avg-lon>
+      <avg-alt>197.000000</avg-alt>
+    </gps-info>
+    <bsstimestamp>0</bsstimestamp>
+    <cdp-device></cdp-device>
+    <cdp-portid></cdp-portid>
+    <seen-card>
+     <seen-uuid>e4f30854-c324-11e1-a07d-0c04101be201</seen-uuid>
+     <seen-time>Sat Jun 30 22:33:18 2012</seen-time>
+     <seen-packets>7</seen-packets>
+    </seen-card>
+    <wireless-client number="1" type="tods" first-time="Sat Jun 30 22:33:18 2012" last-time="Sat Jun 30 22:33:18 2012">
+      <client-mac>00:24:2C:51:17:3A</client-mac>
+      <client-manuf>HonHaiPr</client-manuf>
+        <SSID first-time="Sat Jun 30 22:33:18 2012" last-time="Sat Jun 30 22:33:18 2012">
+            <type>Probe Request</type>
+            <max-rate>54.000000</max-rate>
+            <packets>1</packets>
+            <encryption>None</encryption>
+        </SSID>
+      <channel>0</channel>
+      <freqmhz>2417 4</freqmhz>
+      <freqmhz>2437 1</freqmhz>
+      <freqmhz>2462 2</freqmhz>
+      <maxseenrate>1000</maxseenrate>
+       <packets>
+         <LLC>7</LLC>
+         <data>0</data>
+         <crypt>0</crypt>
+         <total>7</total>
+         <fragments>0</fragments>
+         <retries>0</retries>
+       </packets>
+       <datasize>0</datasize>
+      <snr-info>
+        <last_signal_dbm>-63</last_signal_dbm>
+        <last_noise_dbm>0</last_noise_dbm>
+        <last_signal_rssi>0</last_signal_rssi>
+        <last_noise_rssi>0</last_noise_rssi>
+        <min_signal_dbm>-63</min_signal_dbm>
+        <min_noise_dbm>0</min_noise_dbm>
+        <min_signal_rssi>1024</min_signal_rssi>
+        <min_noise_rssi>1024</min_noise_rssi>
+        <max_signal_dbm>-61</max_signal_dbm>
+        <max_noise_dbm>-256</max_noise_dbm>
+        <max_signal_rssi>0</max_signal_rssi>
+        <max_noise_rssi>0</max_noise_rssi>
+      </snr-info>
+      <gps-info>
+        <min-lat>40.880234</min-lat>
+        <min-lon>-90.089172</min-lon>
+        <min-alt>197.000000</min-alt>
+        <min-spd>0.000000</min-spd>
+        <max-lat>40.880234</max-lat>
+        <max-lon>-90.089172</max-lon>
+        <max-alt>197.000000</max-alt>
+        <max-spd>0.000000</max-spd>
+        <peak-lat>0.000000</peak-lat>
+        <peak-lon>0.000000</peak-lon>
+        <peak-alt>0.000000</peak-alt>
+        <avg-lat>40.880234</avg-lat>
+        <avg-lon>-90.089172</avg-lon>
+        <avg-alt>197.000000</avg-alt>
+      </gps-info>
+      <seen-card>
+       <seen-uuid>e4f30854-c324-11e1-a07d-0c04101be201</seen-uuid>
+       <seen-time>Sat Jun 30 22:33:18 2012</seen-time>
+       <seen-packets>7</seen-packets>
+      </seen-card>
+    </wireless-client>
+  </wireless-network>
+  <wireless-network number="4" type="probe" first-time="Sat Jun 30 22:32:00 2012" last-time="Sat Jun 30 22:33:33 2012">
+    <BSSID>44:2A:60:6B:92:4D</BSSID>
+    <manuf>Apple</manuf>
+    <channel>0</channel>
+    <freqmhz>2412 6</freqmhz>
+    <freqmhz>2417 2</freqmhz>
+    <freqmhz>2422 6</freqmhz>
+    <freqmhz>2427 3</freqmhz>
+    <freqmhz>2432 9</freqmhz>
+    <freqmhz>2437 3</freqmhz>
+    <freqmhz>2442 4</freqmhz>
+    <freqmhz>2447 5</freqmhz>
+    <freqmhz>2452 13</freqmhz>
+    <freqmhz>2457 6</freqmhz>
+    <freqmhz>2462 2</freqmhz>
+    <freqmhz>2467 5</freqmhz>
+    <freqmhz>2472 1</freqmhz>
+    <maxseenrate>1000</maxseenrate>
+     <packets>
+       <LLC>65</LLC>
+       <data>0</data>
+       <crypt>0</crypt>
+       <total>65</total>
+       <fragments>0</fragments>
+       <retries>0</retries>
+     </packets>
+     <datasize>0</datasize>
+    <snr-info>
+      <last_signal_dbm>-36</last_signal_dbm>
+      <last_noise_dbm>0</last_noise_dbm>
+      <last_signal_rssi>0</last_signal_rssi>
+      <last_noise_rssi>0</last_noise_rssi>
+      <min_signal_dbm>-74</min_signal_dbm>
+      <min_noise_dbm>0</min_noise_dbm>
+      <min_signal_rssi>1024</min_signal_rssi>
+      <min_noise_rssi>1024</min_noise_rssi>
+      <max_signal_dbm>-23</max_signal_dbm>
+      <max_noise_dbm>-256</max_noise_dbm>
+      <max_signal_rssi>0</max_signal_rssi>
+      <max_noise_rssi>0</max_noise_rssi>
+    </snr-info>
+    <gps-info>
+      <min-lat>40.880230</min-lat>
+      <min-lon>-90.089172</min-lon>
+      <min-alt>196.000000</min-alt>
+      <min-spd>0.000000</min-spd>
+      <max-lat>40.880241</max-lat>
+      <max-lon>-90.089165</max-lon>
+      <max-alt>198.000000</max-alt>
+      <max-spd>0.000000</max-spd>
+      <peak-lat>0.000000</peak-lat>
+      <peak-lon>0.000000</peak-lon>
+      <peak-alt>0.000000</peak-alt>
+      <avg-lat>40.880234</avg-lat>
+      <avg-lon>-90.089170</avg-lon>
+      <avg-alt>196.954500</avg-alt>
+    </gps-info>
+    <bsstimestamp>0</bsstimestamp>
+    <cdp-device></cdp-device>
+    <cdp-portid></cdp-portid>
+    <seen-card>
+     <seen-uuid>e4f30854-c324-11e1-a07d-0c04101be201</seen-uuid>
+     <seen-time>Sat Jun 30 22:33:33 2012</seen-time>
+     <seen-packets>65</seen-packets>
+    </seen-card>
+    <wireless-client number="1" type="tods" first-time="Sat Jun 30 22:33:33 2012" last-time="Sat Jun 30 22:33:33 2012">
+      <client-mac>44:2A:60:6B:92:4D</client-mac>
+      <client-manuf>Apple</client-manuf>
+        <SSID first-time="Sat Jun 30 22:33:33 2012" last-time="Sat Jun 30 22:33:33 2012">
+            <type>Probe Request</type>
+            <max-rate>54.000000</max-rate>
+            <packets>1</packets>
+            <encryption>None</encryption>
+        </SSID>
+        <SSID first-time="Sat Jun 30 22:33:33 2012" last-time="Sat Jun 30 22:33:33 2012">
+            <type>Probe Request</type>
+            <max-rate>54.000000</max-rate>
+            <packets>1</packets>
+            <encryption>None</encryption>
+            <ssid>CSLLC</ssid>
+        </SSID>
+        <SSID first-time="Sat Jun 30 22:32:00 2012" last-time="Sat Jun 30 22:32:00 2012">
+            <type>Probe Request</type>
+            <max-rate>54.000000</max-rate>
+            <packets>1</packets>
+            <encryption>None</encryption>
+            <ssid>geekspeak</ssid>
+        </SSID>
+        <SSID first-time="Sat Jun 30 22:32:00 2012" last-time="Sat Jun 30 22:32:00 2012">
+            <type>Probe Request</type>
+            <max-rate>54.000000</max-rate>
+            <packets>1</packets>
+            <encryption>None</encryption>
+            <ssid>Tehku-TeaCo</ssid>
+        </SSID>
+        <SSID first-time="Sat Jun 30 22:32:00 2012" last-time="Sat Jun 30 22:32:00 2012">
+            <type>Probe Request</type>
+            <max-rate>54.000000</max-rate>
+            <packets>1</packets>
+            <encryption>None</encryption>
+            <ssid>Lion's Choice - Public</ssid>
+        </SSID>
+      <channel>0</channel>
+      <freqmhz>2412 6</freqmhz>
+      <freqmhz>2417 2</freqmhz>
+      <freqmhz>2422 6</freqmhz>
+      <freqmhz>2427 3</freqmhz>
+      <freqmhz>2432 9</freqmhz>
+      <freqmhz>2437 3</freqmhz>
+      <freqmhz>2442 4</freqmhz>
+      <freqmhz>2447 5</freqmhz>
+      <freqmhz>2452 13</freqmhz>
+      <freqmhz>2457 6</freqmhz>
+      <freqmhz>2462 2</freqmhz>
+      <freqmhz>2467 5</freqmhz>
+      <freqmhz>2472 1</freqmhz>
+      <maxseenrate>1000</maxseenrate>
+       <packets>
+         <LLC>65</LLC>
+         <data>0</data>
+         <crypt>0</crypt>
+         <total>65</total>
+         <fragments>0</fragments>
+         <retries>0</retries>
+       </packets>
+       <datasize>0</datasize>
+      <snr-info>
+        <last_signal_dbm>-36</last_signal_dbm>
+        <last_noise_dbm>0</last_noise_dbm>
+        <last_signal_rssi>0</last_signal_rssi>
+        <last_noise_rssi>0</last_noise_rssi>
+        <min_signal_dbm>-74</min_signal_dbm>
+        <min_noise_dbm>0</min_noise_dbm>
+        <min_signal_rssi>1024</min_signal_rssi>
+        <min_noise_rssi>1024</min_noise_rssi>
+        <max_signal_dbm>-23</max_signal_dbm>
+        <max_noise_dbm>-256</max_noise_dbm>
+        <max_signal_rssi>0</max_signal_rssi>
+        <max_noise_rssi>0</max_noise_rssi>
+      </snr-info>
+      <gps-info>
+        <min-lat>40.880230</min-lat>
+        <min-lon>-90.089172</min-lon>
+        <min-alt>196.000000</min-alt>
+        <min-spd>0.000000</min-spd>
+        <max-lat>40.880241</max-lat>
+        <max-lon>-90.089165</max-lon>
+        <max-alt>198.000000</max-alt>
+        <max-spd>0.000000</max-spd>
+        <peak-lat>0.000000</peak-lat>
+        <peak-lon>0.000000</peak-lon>
+        <peak-alt>0.000000</peak-alt>
+        <avg-lat>40.880234</avg-lat>
+        <avg-lon>-90.089170</avg-lon>
+        <avg-alt>196.954500</avg-alt>
+      </gps-info>
+      <seen-card>
+       <seen-uuid>e4f30854-c324-11e1-a07d-0c04101be201</seen-uuid>
+       <seen-time>Sat Jun 30 22:33:33 2012</seen-time>
+       <seen-packets>65</seen-packets>
+      </seen-card>
+    </wireless-client>
+  </wireless-network>
+  <wireless-network number="5" type="probe" first-time="Sat Jun 30 22:33:36 2012" last-time="Sat Jun 30 22:33:36 2012">
+    <BSSID>B8:17:C2:2E:17:CD</BSSID>
+    <manuf>Apple</manuf>
+    <channel>0</channel>
+    <freqmhz>2422 2</freqmhz>
+    <maxseenrate>1000</maxseenrate>
+     <packets>
+       <LLC>2</LLC>
+       <data>0</data>
+       <crypt>0</crypt>
+       <total>2</total>
+       <fragments>0</fragments>
+       <retries>0</retries>
+     </packets>
+     <datasize>0</datasize>
+    <snr-info>
+      <last_signal_dbm>-72</last_signal_dbm>
+      <last_noise_dbm>0</last_noise_dbm>
+      <last_signal_rssi>0</last_signal_rssi>
+      <last_noise_rssi>0</last_noise_rssi>
+      <min_signal_dbm>-72</min_signal_dbm>
+      <min_noise_dbm>0</min_noise_dbm>
+      <min_signal_rssi>1024</min_signal_rssi>
+      <min_noise_rssi>1024</min_noise_rssi>
+      <max_signal_dbm>-71</max_signal_dbm>
+      <max_noise_dbm>-256</max_noise_dbm>
+      <max_signal_rssi>0</max_signal_rssi>
+      <max_noise_rssi>0</max_noise_rssi>
+    </snr-info>
+    <gps-info>
+      <min-lat>40.880241</min-lat>
+      <min-lon>-90.089172</min-lon>
+      <min-alt>196.000000</min-alt>
+      <min-spd>0.000000</min-spd>
+      <max-lat>40.880241</max-lat>
+      <max-lon>-90.089172</max-lon>
+      <max-alt>196.000000</max-alt>
+      <max-spd>0.000000</max-spd>
+      <peak-lat>40.880241</peak-lat>
+      <peak-lon>-90.089172</peak-lon>
+      <peak-alt>196.000000</peak-alt>
+      <avg-lat>40.880241</avg-lat>
+      <avg-lon>-90.089172</avg-lon>
+      <avg-alt>196.000000</avg-alt>
+    </gps-info>
+    <bsstimestamp>0</bsstimestamp>
+    <cdp-device></cdp-device>
+    <cdp-portid></cdp-portid>
+    <seen-card>
+     <seen-uuid>e4f30854-c324-11e1-a07d-0c04101be201</seen-uuid>
+     <seen-time>Sat Jun 30 22:33:36 2012</seen-time>
+     <seen-packets>2</seen-packets>
+    </seen-card>
+    <wireless-client number="1" type="tods" first-time="Sat Jun 30 22:33:36 2012" last-time="Sat Jun 30 22:33:36 2012">
+      <client-mac>B8:17:C2:2E:17:CD</client-mac>
+      <client-manuf>Apple</client-manuf>
+        <SSID first-time="Sat Jun 30 22:33:36 2012" last-time="Sat Jun 30 22:33:36 2012">
+            <type>Probe Request</type>
+            <max-rate>54.000000</max-rate>
+            <packets>1</packets>
+            <encryption>None</encryption>
+        </SSID>
+      <channel>0</channel>
+      <freqmhz>2422 2</freqmhz>
+      <maxseenrate>1000</maxseenrate>
+       <packets>
+         <LLC>2</LLC>
+         <data>0</data>
+         <crypt>0</crypt>
+         <total>2</total>
+         <fragments>0</fragments>
+         <retries>0</retries>
+       </packets>
+       <datasize>0</datasize>
+      <snr-info>
+        <last_signal_dbm>-72</last_signal_dbm>
+        <last_noise_dbm>0</last_noise_dbm>
+        <last_signal_rssi>0</last_signal_rssi>
+        <last_noise_rssi>0</last_noise_rssi>
+        <min_signal_dbm>-72</min_signal_dbm>
+        <min_noise_dbm>0</min_noise_dbm>
+        <min_signal_rssi>1024</min_signal_rssi>
+        <min_noise_rssi>1024</min_noise_rssi>
+        <max_signal_dbm>-71</max_signal_dbm>
+        <max_noise_dbm>-256</max_noise_dbm>
+        <max_signal_rssi>0</max_signal_rssi>
+        <max_noise_rssi>0</max_noise_rssi>
+      </snr-info>
+      <gps-info>
+        <min-lat>40.880241</min-lat>
+        <min-lon>-90.089172</min-lon>
+        <min-alt>196.000000</min-alt>
+        <min-spd>0.000000</min-spd>
+        <max-lat>40.880241</max-lat>
+        <max-lon>-90.089172</max-lon>
+        <max-alt>196.000000</max-alt>
+        <max-spd>0.000000</max-spd>
+        <peak-lat>40.880241</peak-lat>
+        <peak-lon>-90.089172</peak-lon>
+        <peak-alt>196.000000</peak-alt>
+        <avg-lat>40.880241</avg-lat>
+        <avg-lon>-90.089172</avg-lon>
+        <avg-alt>196.000000</avg-alt>
+      </gps-info>
+      <seen-card>
+       <seen-uuid>e4f30854-c324-11e1-a07d-0c04101be201</seen-uuid>
+       <seen-time>Sat Jun 30 22:33:36 2012</seen-time>
+       <seen-packets>2</seen-packets>
+      </seen-card>
+    </wireless-client>
+  </wireless-network>
+</detection-run>
