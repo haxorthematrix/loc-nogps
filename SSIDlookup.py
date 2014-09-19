@@ -19,6 +19,9 @@
 #                ElementTree                                               #
 #                iSniffGPS wloc (included)                                 #
 #                protobuf                                                  #
+#                A cookie from WiGLE input into wigle.py                   #
+#                  (obtain from a browser after logging in here:           #
+#                  http://WiGLE.net/gps/gps/GPSDB/login) 
 #                                                                          #
 #  Authors: Larry Pesce - larry@inguardians.com @haxorthematrix            #
 #           Don Weber - don@inguardians.com @cutaway                       #
