@@ -13,7 +13,10 @@
 #         ./loc-nogps.py /path/to/kismet-netxml/  output-map-filename      #
 #                                                                          #
 #  Requirements: Python                                                    #
-#                Kismet .netxml log files                                  #
+#                python-netaddr                                            #
+#                python-requests                                           #
+#                BeautifulSoup                                             #
+#                bs4                                                       #
 #                pygmaps                                                   #
 #                ElementTree                                               #
 #                iSniffGPS wloc (included)                                 #
