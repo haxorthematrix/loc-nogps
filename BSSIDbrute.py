@@ -8,18 +8,14 @@
 #               determine location of APs, while filling in for unknown    #
 #               for up to 3 octets.                                        #
 #                                                                          #
-#  Usage: ./BSSIDbrute.py <colon separated BSSID>                          #
+#  Usage: ./BSSIDbrute.py <01:23:x:67:x:ab>                                #
 #         an "x" should represent the octets to bruteforce                 #
 #                                                                          #
 #  Requirements: Python                                                    #
-#                python-netaddr                                            #
 #                python-requests                                           #
 #                BeautifulSoup                                             #
 #                bs4                                                       #
-#                pygmaps                                                   #
-#                ElementTree                                               #
 #                iSniffGPS wloc (included)                                 #
-#                protobuf                                                  #
 #                                                                          #
 #  Authors: Larry Pesce - larry@inguardians.com @haxorthematrix            #
 #           Don Weber - don@inguardians.com @cutaway                       #
@@ -40,45 +36,54 @@
 #  Date: September 19, 2014                                                #
 #                                                                          #
 ############################################################################
-from datetime import datetime
-#from models import *
-from string import lower
-#import wigle
-import wloc
 import sys
-from netaddr import EUI
+import applewloc
 
-# Show status
-STATUS = 0
+def usage():
+    print "%s Usage"%sys.argv[0]
+    print "    -h: help"
+    print "    -b <bssid>: BSSID to search. Format: 01:23:x:67:x:ab. Search locations should be a single 'x'."
+    print "    -d: Turn on debugging."
+    sys.exit()
 
-# build possible values. These will be lower.
+# Defaults
+bssid   = None
+STATUS = False
+DEBUG  = False
+
+# Process options
+ops = ['-b','-d','-h']
+
+while len(sys.argv) > 1:
+    op = sys.argv.pop(1)
+    if op == '-b':
+        # Get user input and make it all lower case
+        bssid = sys.argv.pop(1).lower()
+        if bssid.count(':') != 5: usage()
+    if op == '-d':
+        DEBUG = True
+        applewloc.DEBUG = True
+    if op == '-h':
+        usage()
+    if op not in ops:
+        print "Unknown option:",op
+        usage()
+
+# Test for user input
+if not bssid: usage()
+if DEBUG: print "In bssid:",bssid
+
+# Build possible values. These will be lower.
 max_octet = 256
 octets = [chr(x).encode('hex') for x in range(max_octet)]
 
-def print_locs(networks):
-    # Print networks and their location
-    for key,value in networks.items():
-        print key,":", value
-
-def AppleWloc(bssid=None):
-    # Query Apple for the bssid
-    apdict = wloc.QueryBSSID(bssid.lower())
-    # Print status if we are running large sets
-    if STATUS: print ".",
-    if STATUS: sys.stdout.flush()
-    # Review returned values for the bssid
-    networks = {key: value for key, value in apdict.items() if (key == bssid) and not (value[0] == -180.0)}
-    # Return the values for the bssid
-    return networks
-
 # Generate possible networks
 re_chr = 'x'
-re_bssid = sys.argv[1].lower()
-if not re_bssid.count(re_chr) or re_bssid.count(re_chr) > 3:
+if not bssid.count(re_chr) or bssid.count(re_chr) > 3:
     print "Expected input 12:x:45:x:67:x with max of 3 x\'s"
     sys.exit()
 # First run
-tmp = [re_bssid.replace('x',x,1) for x in octets]
+tmp = [bssid.replace('x',x,1) for x in octets]
 # Second run
 if tmp[0].count('x'):
     tmp2 = []
@@ -94,17 +99,11 @@ if tmp[0].count('x'):
     tmp = tmp2
 
 # Search for networks
-# How to concantenate dictionaries. Not very efficient but easy: 'd4 = {}' 'for d in (d1, d2, d3): d4.update(d)'
-#networks = {}
 for e in tmp:
 
     # Process each bssid
-    network = AppleWloc(bssid=e)
+    network = applewloc.AppleWloc(bssid=e)
 
-    # Store multiple networks together for future processing
-    #networks.update(network)
-
-    # Print results
-    #print_locs(AppleWloc(bssid=e))
-    print_locs(network)
+    # Print each network discovered
+    applewloc.print_locs(network)
 

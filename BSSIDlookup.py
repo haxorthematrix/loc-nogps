@@ -7,17 +7,13 @@
 #               and utilizes the iSniff GPS/undocumented API call to       #
 #               determine location of APs                                  #
 #                                                                          #
-#  Usage: ./BSSIDlookup.py <colon separated BSSID>                         #
+#  Usage: ./BSSIDlookup.py -b <xx:xx:xx:xx:xx:xx>                          #
 #                                                                          #
 #  Requirements: Python                                                    #
-#                python-netaddr                                            #
 #                python-requests                                           #
 #                BeautifulSoup                                             #
 #                bs4                                                       #
-#                pygmaps                                                   #
-#                ElementTree                                               #
 #                iSniffGPS wloc (included)                                 #
-#                protobuf                                                  #
 #                                                                          #
 #  Authors: Larry Pesce - larry@inguardians.com @haxorthematrix            #
 #           Don Weber - don@inguardians.com @cutaway                       #
@@ -38,29 +34,42 @@
 #  Date: September 19, 2014                                                #
 #                                                                          #
 ############################################################################
-from datetime import datetime
-#from models import *
-from string import lower
-#import wigle
-import wloc
-import re
 import sys
-from netaddr import EUI
+import applewloc
 
-def AppleWloc(bssid=None):	
-	#if not bssid:
-	#	bssid = 'B8:C7:5D:09:AF:13'
-	print 'Got request for %s' % bssid
-	template='apple-wloc.html'
-	#request.session['apdict'] = {}
-	#request.session['apset'] = set() #reset server-side cache of unique bssids if we load page normally
-	#print '%s in set at start' % len(request.session['apset'])
-	bssid=lower(bssid)
-	apdict = wloc.QueryBSSID(bssid)	
-	print '%s returned from Apple' % len(apdict)
-	for key,value in apdict.items():
-		#print "Key:",key," - sys.argv[1]:",sys.argv[1].lower()
-		if key == str(sys.argv[1].lower()):
-			print key,":", value
+def usage():
+    print "%s Usage"%sys.argv[0]
+    print "    -h: help"
+    print "    -b <bssid>: BSSID to search. Format: xx:xx:xx:xx:xx:xx"
+    print "    -d: Turn on debugging."
+    sys.exit()
 
-AppleWloc(str(sys.argv[1]))
+# Defaults
+bssid   = None
+DEBUG  = False
+
+# Process options
+ops = ['-b','-d','-h']
+
+while len(sys.argv) > 1:
+    op = sys.argv.pop(1)
+    if op == '-b':
+        # Get user input and make it all lower case
+        bssid = sys.argv.pop(1).lower()
+        if bssid.count(':') != 5: usage()
+    if op == '-d':
+        DEBUG = True
+        applewloc.DEBUG = True
+    if op == '-h':
+        usage()
+    if op not in ops:
+        print "Unknown option:",op
+        usage()
+
+# Test for user input
+if not bssid: usage()
+if DEBUG: print "In bssid:",bssid
+
+# Get BSSID from Apple and print results
+applewloc.print_locs(applewloc.AppleWloc(bssid))
+

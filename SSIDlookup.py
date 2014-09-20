@@ -8,20 +8,16 @@
 #               iSniff GPS/undocumented API call to determine location of  #
 #               APs.                                                       #
 #                                                                          #
-#  Usage: ./SSIDlookup.py <SSID>                                           #
+#  Usage: ./SSIDlookup.py <SSID> <cookie>                                  #
 #                                                                          #
 #  Requirements: Python                                                    #
-#                python-netaddr                                            #
 #                python-requests                                           #
 #                BeautifulSoup                                             #
 #                bs4                                                       #
-#                pygmaps                                                   #
-#                ElementTree                                               #
 #                iSniffGPS wloc (included)                                 #
-#                protobuf                                                  #
 #                A cookie from WiGLE input into wigle.py                   #
 #                  (obtain from a browser after logging in here:           #
-#                  http://WiGLE.net/gps/gps/GPSDB/login) 
+#                  http://WiGLE.net/gps/gps/GPSDB/login)                   # 
 #                                                                          #
 #  Authors: Larry Pesce - larry@inguardians.com @haxorthematrix            #
 #           Don Weber - don@inguardians.com @cutaway                       #
@@ -42,38 +38,55 @@
 #  Date: September 19, 2014                                                #
 #                                                                          #
 ############################################################################
-from datetime import datetime
-#from models import *
-from string import lower
-#import wigle
-import wloc
-import re
 import sys
-from netaddr import EUI
-from wigle import getLocation
+import applewloc
 
-def AppleWloc(bssid=None):	
-    #if not bssid:
-    #   bssid = 'B8:C7:5D:09:AF:13'
-    print 'Got request for %s' % bssid
-    template='apple-wloc.html'
-    #request.session['apdict'] = {}
-    #request.session['apset'] = set() #reset server-side cache of unique bssids if we load page normally
-    #print '%s in set at start' % len(request.session['apset'])
-    bssid=lower(bssid)
-    apdict = wloc.QueryBSSID(bssid)
-    print '%s returned from Apple' % len(apdict)
-    for key,value in apdict.items():
-        #print "Key:",key," - sys.argv[1]:",sys.argv[1].lower()
-        if key == str(bssid.lower()):
-            print key,":", value
+def usage():
+    print "%s Usage"%sys.argv[0]
+    print "    -h: help"
+    print "    -s <ssid>: SSID to search. Put SSIDs with spaces and special characters in double quotes."
+    print "    -c <cookie>: The Wigle cookie to use. This requires a Wigle account with an active session or unexpired cookie."
+    print "    -d: Turn on debugging."
+    sys.exit()
 
-dssid = getLocation(SSID=sys.argv[1],cauth=sys.argv[2])
-#print "dssid:",dssid
-#{'stayoffmylawn [00:25:9C:ED:0F:EB] [6]': (33.65253067, -112.03952026)
-for key,value in dssid.items():
+# Defaults
+ssid   = None
+cookie = None       # Update this value with your 10 year Wigle cookie
+DEBUG  = False
+
+# Process options
+ops = ['-s','-c','-d','-h']
+
+while len(sys.argv) > 1:
+    op = sys.argv.pop(1)
+    if op == '-s':
+        ssid = sys.argv.pop(1)
+    if op == '-c':
+        cookie = sys.argv.pop(1)
+    if op == '-d':
+        DEBUG = True
+        applewloc.DEBUG = True
+    if op == '-h':
+        usage()
+    if op not in ops:
+        print "Unknown option:",op
+        usage()
+
+# Test for user input
+if not ssid or not cookie: usage()
+if DEBUG: print "In ssid:",ssid
+if DEBUG: print "In cookie:",cookie
+
+# Get list of possible BSSIDs by searching Wigle for specific SSID
+bssids = applewloc.getSSIDloc(ssid=ssid,cookie=cookie)
+
+# Process each of the BSSIDs returned by Wigle
+# Wigle dictionary format: {'stayoffmylawn [00:25:9C:ED:0F:EB] [6]': (33.65253067, -112.03952026)
+for key,value in bssids.items():
     if key:
         key = key.split()[1][1:-1]
     else:
         continue
-    AppleWloc(bssid=key)
+    #print_locs(AppleWloc(bssid=key))
+    networks = applewloc.AppleWloc(bssid=key)
+    applewloc.print_locs(networks)
