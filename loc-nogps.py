@@ -44,14 +44,12 @@
 
 import os    
 import sys
-import datetime
 import xml.etree.ElementTree as ET
-import argparse
 from string import lower
 import wloc
 import pygmaps
 import webbrowser
-
+import applewloc
 
 def processnetworks(xml_dir):
     # cycle through each file in the directory
@@ -83,51 +81,76 @@ def processnetworks(xml_dir):
                     if network_detail.tag == 'BSSID':
                         networks[-1]['bssid'] = network_detail.text
                         #retrieve latlong
-                        new_lat,new_long = AppleWloc(str(network_detail.text),str(child_network.text))
-                        if (new_lat == -180) or (new_long == -180):
+                        new_lat,new_long = applewloc.getBSSIDloc(network_detail.text)
+                        if (new_lat == -180 or not new_lat) or (new_long == -180 or not new_long):
                             networks.pop(-1)
                             continue # skips rest of the for loop and goes to next iteration
                         networks[-1]['lat'] = new_lat
                         networks[-1]['long'] = new_long
-    for e in networks:
-        print e
     return networks
 
-def AppleWloc(bssid,essid):
-    template='apple-wloc.html'
-    bssid=lower(bssid)
-    apdict = wloc.QueryBSSID(bssid)
-    for key,value in apdict.items():
-        if key == lower(str(bssid)):
-            print key,"::", value
-            break
-    return value
+def print_nets(networks):
+    print "Printing Networks:"
+    for e in networks:
+        print "   ",e
 
 if __name__ == "__main__":
 
-    # variables
+    def usage():
+        print "%s Usage"%sys.argv[0]
+        print "    -h: help"
+        print "    -f <logfilepath>: A directory containing one or more Kismet .netxml log files. kislocate will process all .netxml files in the directory but will ignore all other files. Geolocate Kism findings from .netxml and populate custom Google map."
+        print "    -o <output file name>: The name of the output file to write results. This will be written to the current working directory. Default: mymap.draw.html"
+        print "    -w: Open results in web browser. Default: off"
+        print "    -d <level>: Turn on debugging. Level 0 prints networks to be displayed. Level 1 prints networks as they are searched via wloc."
+        sys.exit()
+
+    # Defaults
+    DEBUG  = False
+    applewloc.DEBUG = False
+    openweb = False
     network_matrix = []
     bssid_list = []
     log_file_list = []
+    output_file = 'mymap.draw.html'
 
-#now = datetime.datetime.now()
-    # used on the HTML page output
-    #   timestamp = now.strftime("%Y-%m-%d %H:%M:%S")
+    # Process options
+    ops = ['-f','-w','-o','-d','-h']
 
-    # process command-line arguments
-    parser = argparse.ArgumentParser(description='Kismet Geolocation Google Map Generator v.1.0 ')
-    parser.add_argument('log_file_path', metavar='LogFilePath',
-                        help='A directory containing one or more Kismet .netxml log files. kislocate will process all .netxml files in the directory but will ignore all other files. Geolocate Kism findings from .netxml and populate custom Google map')
-    args = parser.parse_args()
-    #output_format = args.o
+    while len(sys.argv) > 1:
+        op = sys.argv.pop(1)
+        if op == '-f':
+            log_file_path = sys.argv.pop(1)
+        if op == '-o':
+            output_file = sys.argv.pop(1)
+        if op == '-d':
+            op = int(sys.argv.pop(1))
+            if op > 0: DEBUG = True
+            if op > 1: applewloc.DEBUG = True
+        if op == '-w':
+            openweb = True
+        if op == '-h':
+            usage()
+        if op not in ops:
+            print "Unknown option:",op
+            usage()
+
     # add the ending slash in case it was left off
-    if args.log_file_path[-1:] <> "/":
-        args.log_file_path = args.log_file_path + "/"
+    if log_file_path[-1:] <> "/":
+        log_file_path = log_file_path + "/"
 
-    networks = processnetworks(args.log_file_path)
+    # Process xml files and retrieve network information
+    networks = processnetworks(log_file_path)
+    if DEBUG: print_nets(networks)
+
+    # Create Google map of networks
     mymap = pygmaps.maps(networks[0]['lat'],networks[0]['long'], 8)
     for e in networks:
         mymap.addpoint(e['lat'],e['long'],color = "#FF0000",title = e['essid'])
-    mymap.draw('./mymap.draw.html')
-    file = os.path.abspath("mymap.draw.html")
-    webbrowser.open_new_tab("file://"+file)
+    mymap.draw('./'+output_file)
+    output_file = os.path.abspath(output_file)
+    print "File written to:", output_file
+
+    # Open in web browser
+    if openweb: webbrowser.open_new_tab("file://"+output_file)
+    print "%s Done."%sys.argv[0]

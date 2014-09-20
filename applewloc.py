@@ -54,7 +54,7 @@ def print_locs(networks):
 def AppleWloc(bssid=None):
     # If you give us nothing we return nothing
     if not bssid: return {}
-    if DEBUG: print "applewloc bssid:",bssid
+    if DEBUG: print "applewloc bssid:",bssid.lower()
 
     # Query Apple for the bssid
     apdict = wloc.QueryBSSID(bssid.lower())
@@ -62,28 +62,32 @@ def AppleWloc(bssid=None):
     if STATUS: print ".",
     if STATUS: sys.stdout.flush()
     # Review returned values for the bssid
-    networks = {key: value for key, value in apdict.items() if (key == bssid) and not (value[0] == -180.0)}
+    networks = {key: value for key, value in apdict.items() if (key == bssid.lower()) and not (value[0] == -180.0)}
     # Return the values for the bssid
+    if DEBUG: print "applewloc.network:",networks
     return networks
 
 # Retrieve the Lat/Long of a single BSSID
 def getBSSIDloc(bssid=None):
     # If you give us nothing we return nothing
-    if not bssid: return [] 
+    if not bssid: return [None,None] 
+    bssid = bssid.lower()
     if DEBUG: print "applewloc bssid:",bssid
 
     # This should return a single network
-    network = AppleWloc(bssid=bssid)
+    network = AppleWloc(bssid=bssid.lower())
+    if DEBUG: print "getBSSIDloc.network:",network
 
     # Return the value of the dictionary
-    return network[bssid.lower()]
+    if bssid in network: return network[bssid]
+    return [None,None]
 
 # Retrieve SSID using wigle
 def getSSIDloc(ssid=None,cookie=None):
     # If you give us nothing we return nothing
     if not ssid or not cookie: return {}
-    if DEBUG: print "applewloc ssid:",ssid
-    if DEBUG: print "applewloc cookie:",cookie
+    if DEBUG: print "getSSID.ssid:",ssid
+    if DEBUG: print "getSSID.cookie:",cookie
 
     # Request ssid and return the dictionary that wigle returns
     # Wigle dictionary format: {'stayoffmylawn [00:25:9C:ED:0F:EB] [6]': (33.65253067, -112.03952026)}
