@@ -38,21 +38,32 @@
 ############################################################################
 import sys
 import applewloc
+import pygmaps
+import webbrowser
+import os
 
 def usage():
     print "%s Usage"%sys.argv[0]
     print "    -h: help"
     print "    -b <bssid>: BSSID to search. Format: 01:23:x:67:x:ab. Search locations should be a single 'x'."
     print "    -d: Turn on debugging."
+    print "    -w: Opens web browser. Requires -m"
+    print "    -m: Generate google map. Defaults to mymap.draw.html"
+    print "    -o: Custom filename map output"
     sys.exit()
 
 # Defaults
 bssid   = None
 STATUS = False
 DEBUG  = False
+output_file = "mymap.draw.html"
+writemap = True
+mymap = None
+openbrowser = False
+networks = {}
 
 # Process options
-ops = ['-b','-d','-h']
+ops = ['-b','-d','-h','-o','-w']
 
 while len(sys.argv) > 1:
     op = sys.argv.pop(1)
@@ -63,6 +74,10 @@ while len(sys.argv) > 1:
     if op == '-d':
         DEBUG = True
         applewloc.DEBUG = True
+    if op == '-o':
+        output_file = sys.argv.pop(1)
+    if op == '-w':
+        openbrowser = True
     if op == '-h':
         usage()
     if op not in ops:
@@ -74,7 +89,9 @@ if not bssid: usage()
 if DEBUG: print "In bssid:",bssid
 
 # Build possible values. These will be lower.
+
 max_octet = 256
+
 octets = [chr(x).encode('hex') for x in range(max_octet)]
 
 # Generate possible networks
@@ -103,7 +120,27 @@ for e in tmp:
 
     # Process each bssid
     network = applewloc.AppleWloc(bssid=e)
-
+    #print "networks:",network
+    networks.update(network)
     # Print each network discovered
     applewloc.print_locs(network)
+
+#networks = applewloc.AppleWloc(bssid)
+#print "networks:",networks
+
+
+#if writemap == True:
+    # Create Google map of networks
+base_bssid = networks.keys()[0]
+mymap = pygmaps.maps((networks[base_bssid][0]),(networks[base_bssid][1]), 4)
+for e in networks.keys():
+    mymap.addpoint(networks[e][0],networks[e][1],color = "#FF0000",title = [e])
+mymap.draw('./'+output_file)
+output_file = os.path.abspath(output_file)
+print "File written to:", output_file
+
+# Open in web browser
+if openbrowser == True:
+    webbrowser.open_new_tab("file://"+output_file)
+    print "%s Done."%sys.argv[0]
 

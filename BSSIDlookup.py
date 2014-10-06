@@ -36,20 +36,30 @@
 ############################################################################
 import sys
 import applewloc
+import pygmaps
+import webbrowser
+import os
 
 def usage():
     print "%s Usage"%sys.argv[0]
     print "    -h: help"
     print "    -b <bssid>: BSSID to search. Format: xx:xx:xx:xx:xx:xx"
     print "    -d: Turn on debugging."
+    print "    -w: Opens web browser with the generated map"
+    print "    -o: Custom filename for output map"
     sys.exit()
 
 # Defaults
 bssid   = None
 DEBUG  = False
+output_file = "mymap.draw.html"
+#writemap = TRUE
+mymap = None
+openbrowser = False
+networks = {}
 
 # Process options
-ops = ['-b','-d','-h']
+ops = ['-b','-d','-h','-o','-w']
 
 while len(sys.argv) > 1:
     op = sys.argv.pop(1)
@@ -60,6 +70,10 @@ while len(sys.argv) > 1:
     if op == '-d':
         DEBUG = True
         applewloc.DEBUG = True
+    if op == '-o':
+        output_file = sys.argv.pop(1)
+    if op == '-w':
+        openbrowser = True
     if op == '-h':
         usage()
     if op not in ops:
@@ -72,4 +86,20 @@ if DEBUG: print "In bssid:",bssid
 
 # Get BSSID from Apple and print results
 applewloc.print_locs(applewloc.AppleWloc(bssid))
+networks = applewloc.AppleWloc(bssid)
+#print "networks:",networks
+
+
+    # Create Google map of networks
+mymap = pygmaps.maps((networks[bssid][0]),(networks[bssid][1]), 8)
+for e in networks:
+    mymap.addpoint((networks[bssid][0]),(networks[bssid][1]),color = "#FF0000",title = bssid)
+mymap.draw('./'+output_file)
+output_file = os.path.abspath(output_file)
+print "File written to:", output_file
+
+# Open in web browser
+if openbrowser == True:
+    webbrowser.open_new_tab("file://"+output_file)
+    print "%s Done."%sys.argv[0]
 
