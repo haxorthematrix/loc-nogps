@@ -40,6 +40,9 @@
 ############################################################################
 import sys
 import applewloc
+import pygmaps
+import os
+import webbrowser
 
 def usage():
     print "%s Usage"%sys.argv[0]
@@ -53,9 +56,14 @@ def usage():
 ssid   = None
 cookie = None       # Update this value with your 10 year Wigle cookie
 DEBUG  = False
+ssid_count = 0
+output_file = "mymap.draw.html"
+writemap = True
+mymap = None
+openbrowser = False
 
 # Process options
-ops = ['-s','-c','-d','-h']
+ops = ['-s','-c','-d','-o','-w','-h']
 
 while len(sys.argv) > 1:
     op = sys.argv.pop(1)
@@ -66,6 +74,10 @@ while len(sys.argv) > 1:
     if op == '-d':
         DEBUG = True
         applewloc.DEBUG = True
+    if op == '-o':
+        output_file = sys.argv.pop(1)
+    if op == '-w':
+        openbrowser = True
     if op == '-h':
         usage()
     if op not in ops:
@@ -89,4 +101,20 @@ for key,value in bssids.items():
         continue
     #print_locs(AppleWloc(bssid=key))
     networks = applewloc.AppleWloc(bssid=key)
+    #print "networks: ", networks
     applewloc.print_locs(networks)
+    if ssid_count == 0 :
+        if networks.keys()[0] != None:
+            base_bssid = networks.keys()[0]
+        mymap = pygmaps.maps((networks[base_bssid][0]),(networks[base_bssid][1]), 4)
+        ssid_count = 1
+    for e in networks:
+        mymap.addpoint(networks[e][0],networks[e][1],color = "#FF0000",title = [e])
+mymap.draw('./'+output_file)
+output_file = os.path.abspath(output_file)
+print "File written to:", output_file
+
+# Open in web browser
+if openbrowser == True:
+    webbrowser.open_new_tab("file://"+output_file)
+    print "%s Done."%sys.argv[0]
