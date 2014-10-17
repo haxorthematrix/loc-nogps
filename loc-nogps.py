@@ -99,7 +99,7 @@ if __name__ == "__main__":
     def usage():
         print "%s Usage"%sys.argv[0]
         print "    -h: help"
-        print "    -f <logfilepath>: A directory containing one or more Kismet .netxml log files. kislocate will process all .netxml files in the directory but will ignore all other files. Geolocate Kism findings from .netxml and populate custom Google map."
+        print "    -f <logfilepath>: A directory containing one or more Kismet .netxml log files. kislocate will process all .netxml files in the directory but will ignore all other files. Geolocate Kismet findings from .netxml and populate custom Google map."
         print "    -o <output file name>: The name of the output file to write results. This will be written to the current working directory. Default: mymap.draw.html"
         print "    -w: Open results in web browser. Default: off"
         print "    -d <level>: Turn on debugging. Level 0 prints networks to be displayed. Level 1 prints networks as they are searched via wloc."
